@@ -117,15 +117,17 @@ class Stack implements Priority_operations {
         }
 
         for (int i = 0; i < size - 1; i++) { // от первого до предпоследнего элемента formula
-            if ((formula.charAt(i) == '+' || formula.charAt(i) == '-' || formula.charAt(i) == '*' || formula.charAt(i) == '/' || formula.charAt(i) == '.') &&
-                    (formula.charAt(i + 1) == '+' || formula.charAt(i + 1) == '-' || formula.charAt(i + 1) == '*' || formula.charAt(i + 1) == '/' || formula.charAt(i + 1) == '.') &&
-                    (formula.charAt(i + 2) == '+' || formula.charAt(i + 2) == '-' || formula.charAt(i + 2) == '*' || formula.charAt(i + 2) == '/' || formula.charAt(i + 2) == '.')) { // проверка на 3 знака подряд
-                error = true;
-            }
+            if (i != size - 2) {
+                if ((formula.charAt(i) == '+' || formula.charAt(i) == '-' || formula.charAt(i) == '*' || formula.charAt(i) == '/' || formula.charAt(i) == '.') &&
+                        (formula.charAt(i + 1) == '+' || formula.charAt(i + 1) == '-' || formula.charAt(i + 1) == '*' || formula.charAt(i + 1) == '/' || formula.charAt(i + 1) == '.') &&
+                        (formula.charAt(i + 2) == '+' || formula.charAt(i + 2) == '-' || formula.charAt(i + 2) == '*' || formula.charAt(i + 2) == '/' || formula.charAt(i + 2) == '.')) { // проверка на 3 знака подряд
+                    error = true;
+                }
 
-            if ((formula.charAt(i) == '+' || formula.charAt(i) == '-' || formula.charAt(i) == '*' || formula.charAt(i) == '/' || formula.charAt(i) == '.') &&
-                    (formula.charAt(i + 1) == '*' || formula.charAt(i + 1) == '/' || formula.charAt(i + 1) == '.')) { // проверка на 2 знака подряд кроме '+' , '-'
-                error = true;
+                if ((formula.charAt(i) == '+' || formula.charAt(i) == '-' || formula.charAt(i) == '*' || formula.charAt(i) == '/' || formula.charAt(i) == '.') &&
+                        (formula.charAt(i + 1) == '*' || formula.charAt(i + 1) == '/' || formula.charAt(i + 1) == '.')) { // проверка на 2 знака подряд кроме '+' , '-'
+                    error = true;
+                }
             }
 
             if (formula.charAt(i) == '(' && formula.charAt(i + 1) == ')') { // проверка на пустые скобки
